@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains customisations for the webform module.
+ */
+
+ module_load_include('inc', 'webform', 'includes/webform.theme.template');
+
+ /**
+  * Implements hook_theme().
+  */
+function bhcc_webform_theme() {
+  return [
+    'bhcc_webform_uk_address' => [
+      'render element' => 'element',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for BHCC Webform templates.
+ *
+ * Default template: bhcc_webform_uk_address.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - element: An associative array containing the properties of the element.
+ */
+function template_preprocess_bhcc_webform_uk_address(array &$variables) {
+  // Here you can get the composite element and alter it.
+  _template_preprocess_webform_composite($variables);
+}
+
+function bhcc_webform_preprocess_webform(array &$variables) {
+  $variables['#attached']['library'][] = 'bhcc_webform/bhcc_webform.form_errors';
+}

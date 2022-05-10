@@ -1,0 +1,15 @@
+bhcc_webform_uk_address:
+  version: VERSION
+  css:
+    theme:
+      css/bhcc_webform_uk_address.css: {}
+  dependencies:
+    - webform/webform.composite
+
+bhcc_webform.form_errors:
+  version: VERSION
+  js:
+    js/form_errors.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

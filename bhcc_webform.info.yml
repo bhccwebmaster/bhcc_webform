@@ -1,0 +1,7 @@
+name: 'BHCC Webform'
+type: module
+description: 'Customising the Webform module'
+package: 'BHCC Webform'
+core_version_requirement: ^8 || ^9
+dependencies:
+  - 'webform:webform'
