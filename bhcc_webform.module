@@ -5,7 +5,7 @@
  * Contains customisations for the webform module.
  */
 
- module_load_include('inc', 'webform', 'includes/webform.theme.template');
+\Drupal::moduleHandler()->loadInclude('webform', 'inc', 'includes/webform.theme.template');
 
  /**
   * Implements hook_theme().
