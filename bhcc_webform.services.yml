@@ -1,0 +1,5 @@
+services:
+  bhcc_webform_cache_header.subscriber:
+    class: Drupal\bhcc_webform\EventSubscriber\WebformCacheHeaderKernelSubscriber
+    tags:
+      - { name: event_subscriber }
