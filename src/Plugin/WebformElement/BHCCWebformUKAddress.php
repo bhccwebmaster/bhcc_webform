@@ -7,7 +7,7 @@ use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Provides a 'bhcc_webform_uk_address' element.
- * 
+ *
  * @WebformElement(
  *   id = "bhcc_webform_uk_address",
  *   label = @Translation("UK Address"),
@@ -17,7 +17,7 @@ use Drupal\webform\WebformSubmissionInterface;
  *   composite = TRUE,
  *   states_wrapper = TRUE,
  * )
- * 
+ *
  * @see \Drupal\webform_example_composite\Element\WebformExampleComposite
  * @see \Drupal\webform\Plugin\WebformElement\WebformCompositeBase
  * @see \Drupal\webform\Plugin\WebformElementBase
@@ -40,7 +40,7 @@ class BHCCWebformUKAddress extends WebformCompositeBase {
     $value = $this->getValue($element, $webform_submission, $options);
 
     $lines = [];
-    $lines[] = 
+    $lines[] =
       ($value['address_1'] ? $value['address_1'] : '') .
       ($value['address_2'] ? ' ' . $value['address_2'] : '') .
       ($value['town_city'] ? ' ' . $value['town_city'] : '') .

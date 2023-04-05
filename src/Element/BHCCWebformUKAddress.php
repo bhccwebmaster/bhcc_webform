@@ -59,7 +59,7 @@ class BHCCWebformUKAddress extends WebformCompositeBase {
         // from addresslookup - see DRUP-1184.
         'class' => [
           'bhcc-webform-uk-address--address-2',
-          'js-bhcc-webform-uk-address--address-2'
+          'js-bhcc-webform-uk-address--address-2',
         ],
       ],
     ];

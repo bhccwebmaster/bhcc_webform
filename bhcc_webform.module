@@ -7,9 +7,9 @@
 
 \Drupal::moduleHandler()->loadInclude('webform', 'inc', 'includes/webform.theme.template');
 
- /**
-  * Implements hook_theme().
-  */
+/**
+ * Implements hook_theme().
+ */
 function bhcc_webform_theme() {
   return [
     'bhcc_webform_uk_address' => [
@@ -32,6 +32,9 @@ function template_preprocess_bhcc_webform_uk_address(array &$variables) {
   _template_preprocess_webform_composite($variables);
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function bhcc_webform_preprocess_webform(array &$variables) {
   $variables['#attached']['library'][] = 'bhcc_webform/bhcc_webform.form_errors';
 }
