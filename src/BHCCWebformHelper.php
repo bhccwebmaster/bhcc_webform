@@ -37,7 +37,7 @@ class BHCCWebformHelper {
       return $element;
     }
     $webform_submission = $form_object->getEntity();
-    // @todo  check that webform_submission is an instance of webform submission
+
     $conditions_validator = \Drupal::service('webform_submission.conditions_validator');
 
     // Loop through each of parents elements to work out visibility.
