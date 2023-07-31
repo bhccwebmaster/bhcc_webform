@@ -29,7 +29,15 @@ class BHCCWebformHelper {
   public static function isElementVisibleThroughParent(array $element, FormStateInterface $form_state, array &$complete_form) {
     // Build webform submission and get conditions validator service.
     $form_object = $form_state->getFormObject();
-    $webform_submission = $form_object->buildEntity($complete_form, $form_state);
+    
+    // If not a webform submission, short circuit return.
+    // Attempt to resolve bug where this can get called and prevent adding
+    // elements in the webform form builder UI.
+    if (!$form_object instanceof WebformSubmissionForm) {
+      return $element;
+    }
+    $webform_submission = $form_object->getEntity();
+    // @todo  check that webform_submission is an instance of webform submission
     $conditions_validator = \Drupal::service('webform_submission.conditions_validator');
 
     // Loop through each of parents elements to work out visibility.
