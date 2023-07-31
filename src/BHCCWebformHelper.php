@@ -26,15 +26,15 @@ class BHCCWebformHelper {
    *   True if all parent elements and the element itself if visible,
    *   else FALSE.
    */
-  public static function isElementVisibleThroughParent(array $element, FormStateInterface $form_state, array &$complete_form) {
+  public static function isElementVisibleThroughParent(array $element, FormStateInterface $form_state, array &$complete_form): bool {
     // Build webform submission and get conditions validator service.
     $form_object = $form_state->getFormObject();
-    
+
     // If not a webform submission, short circuit return.
     // Attempt to resolve bug where this can get called and prevent adding
     // elements in the webform form builder UI.
     if (!$form_object instanceof WebformSubmissionForm) {
-      return $element;
+      return FALSE;
     }
     $webform_submission = $form_object->getEntity();
 
