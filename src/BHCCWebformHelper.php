@@ -3,6 +3,7 @@
 namespace Drupal\bhcc_webform;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\WebformSubmissionForm;
 
 /**
  * Utility class with helpers for webform.
