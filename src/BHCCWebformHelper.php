@@ -37,7 +37,12 @@ class BHCCWebformHelper {
     if (!$form_object instanceof WebformSubmissionForm) {
       return FALSE;
     }
-    $webform_submission = $form_object->getEntity();
+
+    // Use buildEntity to get the webform submission, this is to allow
+    // an accurate calculation of the visibility conditions.
+    // Note: requires application of cleanValues on form state.
+    $form_state->cleanValues();
+    $webform_submission = $form_object->buildEntity($complete_form, $form_state);
 
     $conditions_validator = \Drupal::service('webform_submission.conditions_validator');
 
