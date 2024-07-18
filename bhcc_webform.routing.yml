@@ -1,0 +1,7 @@
+bhcc_webform.webform_config_import:
+  path: '/bhcc-webform/webform-config-import'
+  defaults:
+    _title: 'Webform Config Import'
+    _form: 'Drupal\bhcc_webform\Form\WebformConfigImport'
+  requirements:
+    _permission: 'edit any webform'
