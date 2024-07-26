@@ -1,0 +1,4 @@
+access webform config import form:
+  title: 'Access webform config import form'
+  description: 'Allow user to access the Webform Config Import Form'
+  restrict access: TRUE

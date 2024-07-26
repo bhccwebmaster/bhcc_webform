@@ -26,6 +26,17 @@ final class WebformConfigImport extends ConfigSingleImportForm {
   public function buildForm(array $form, FormStateInterface $form_state): array {
 
     $form = parent::buildForm($form, $form_state);
+
+    // Set the configuration options
+    $configuration_type_options  = [
+      'webform' => $this->t('Webform'),
+      'webform_option' => $this->t('Webform Options'),
+    ];
+    
+    if (isset($form['config_type'])) {
+      $form['config_type']['#options'] = $configuration_type_options;
+    }
+
     return $form;
   }
 
@@ -33,16 +44,21 @@ final class WebformConfigImport extends ConfigSingleImportForm {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
-    // @todo Validate the form here.
-    // Example:
-    // @code
-    //   if (mb_strlen($form_state->getValue('message')) < 10) {
-    //     $form_state->setErrorByName(
-    //       'message',
-    //       $this->t('Message should be at least 10 characters.'),
-    //     );
-    //   }
-    // @endcode
+    parent::validateForm($form, $form_state);
+
+    $import_data = $form_state->getValue('import');
+
+    if(!empty($import_data)) {
+      $config_data = \Drupal::service('config.storage.sync')->read($import_data);
+
+      if($config_data) {
+        foreach ($config_data as $config_name => $config) {
+          if(strpos($config_name, 'webform') !== 0) {
+            $form_state->setErrorByName('import', $this->t('Only webform configurations can be imported.'));
+          }
+        }
+      }
+    }
   }
 
   /**
