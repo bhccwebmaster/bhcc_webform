@@ -50,9 +50,14 @@ final class WebformConfigImport extends ConfigSingleImportForm {
     if (!empty($import_data)) {
       $config_data = \Drupal::service('config.storage.sync')->read($import_data);
 
+      $valid_config = [
+        'webform',
+        'webform_option',
+      ];
+
       if ($config_data) {
         foreach ($config_data as $config_name => $config) {
-          if (strpos($config_name, 'webform') !== 0) {
+          if (in_array($config_name, $valid_config)) {
             $form_state->setErrorByName('import', $this->t('Only webform configurations can be imported.'));
           }
         }
