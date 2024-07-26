@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\bhcc_webform\Form;
 
-use Drupal\Core\Form\FormBase;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\config\Form\ConfigSingleImportForm;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Provides a BHCC Webform form.
@@ -27,12 +26,12 @@ final class WebformConfigImport extends ConfigSingleImportForm {
 
     $form = parent::buildForm($form, $form_state);
 
-    // Set the configuration options
-    $configuration_type_options  = [
+    // Set the configuration options.
+    $configuration_type_options = [
       'webform' => $this->t('Webform'),
       'webform_option' => $this->t('Webform Options'),
     ];
-    
+
     if (isset($form['config_type'])) {
       $form['config_type']['#options'] = $configuration_type_options;
     }
@@ -48,12 +47,12 @@ final class WebformConfigImport extends ConfigSingleImportForm {
 
     $import_data = $form_state->getValue('import');
 
-    if(!empty($import_data)) {
+    if (!empty($import_data)) {
       $config_data = \Drupal::service('config.storage.sync')->read($import_data);
 
-      if($config_data) {
+      if ($config_data) {
         foreach ($config_data as $config_name => $config) {
-          if(strpos($config_name, 'webform') !== 0) {
+          if (strpos($config_name, 'webform') !== 0) {
             $form_state->setErrorByName('import', $this->t('Only webform configurations can be imported.'));
           }
         }
