@@ -6,6 +6,7 @@ namespace Drupal\bhcc_webform\Form;
 
 use Drupal\config\Form\ConfigSingleImportForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\WebformInterface;
 
 /**
  * Provides a BHCC Webform form.
@@ -44,23 +45,18 @@ final class WebformConfigImport extends ConfigSingleImportForm {
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
     parent::validateForm($form, $form_state);
-
+    
     $import_data = $form_state->getValue('import');
 
     if (!empty($import_data)) {
-      $config_data = \Drupal::service('config.storage.sync')->read($import_data);
-
+      $definition = $this->entityTypeManager->getDefinition($form_state->getValue('config_type'));
+      
       $valid_config = [
         'webform',
         'webform_option',
       ];
-
-      if ($config_data) {
-        foreach ($config_data as $config_name => $config) {
-          if (in_array($config_name, $valid_config)) {
-            $form_state->setErrorByName('import', $this->t('Only webform configurations can be imported.'));
-          }
-        }
+      if (!in_array($definition->getProvider(), $valid_config)) {
+        $form_state->setErrorByName('import', $this->t('Only webform configurations can be imported.'));
       }
     }
   }
