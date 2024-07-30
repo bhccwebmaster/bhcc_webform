@@ -6,7 +6,6 @@ namespace Drupal\bhcc_webform\Form;
 
 use Drupal\config\Form\ConfigSingleImportForm;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 
 /**
  * Provides a BHCC Webform form.
