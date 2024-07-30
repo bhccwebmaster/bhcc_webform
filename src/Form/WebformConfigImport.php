@@ -42,27 +42,6 @@ final class WebformConfigImport extends ConfigSingleImportForm {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
-    parent::validateForm($form, $form_state);
-
-    $import_data = $form_state->getValue('import');
-
-    if (!empty($import_data)) {
-      $definition = $this->entityTypeManager->getDefinition($form_state->getValue('config_type'));
-
-      $valid_config = [
-        'webform',
-        'webform_option',
-      ];
-      if (!in_array($definition->getProvider(), $valid_config)) {
-        $form_state->setErrorByName('import', $this->t('Only webform configurations can be imported.'));
-      }
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     parent::submitForm($form, $form_state);
     $this->messenger()->addStatus($this->t('The message has been sent.'));
