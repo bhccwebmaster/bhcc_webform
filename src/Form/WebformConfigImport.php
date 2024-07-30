@@ -6,6 +6,7 @@ namespace Drupal\bhcc_webform\Form;
 
 use Drupal\config\Form\ConfigSingleImportForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Provides a BHCC Webform form.
@@ -45,7 +46,9 @@ final class WebformConfigImport extends ConfigSingleImportForm {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     parent::submitForm($form, $form_state);
     $this->messenger()->addStatus($this->t('The message has been sent.'));
-    $form_state->setRedirect('<front>');
+    // Redirect back to importer form.
+    // @todo Try to redirect to form build page.
+    $form_state->setRedirect('bhcc_webform.webform_config_import');
   }
 
 }
