@@ -33,6 +33,7 @@ final class WebformConfigImport extends ConfigSingleImportForm {
       'webform_options' => $this->t('Webform Options'),
     ];
 
+    // Check that the options are part of the array.
     if (isset($form['config_type'])) {
       $form['config_type']['#options'] = $configuration_type_options;
     }
