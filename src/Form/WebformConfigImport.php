@@ -32,7 +32,7 @@ final class WebformConfigImport extends ConfigSingleImportForm {
     // Set the configuration options.
     $configuration_type_options = [
       'webform' => $this->t('Webform'),
-      'webform_option' => $this->t('Webform Options'),
+      'webform_options' => $this->t('Webform Options'),
     ];
 
     if (isset($form['config_type'])) {
@@ -45,21 +45,31 @@ final class WebformConfigImport extends ConfigSingleImportForm {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    
+
     parent::submitForm($form, $form_state);
 
     if (!empty($this->data['import'])) {
       $import = $this->data['import'];
       $webform_id = $import['id'];
 
-    // Determine the redirection route along with the specified parameters.
-    // Route name is the redirect to the import form builder page.
-    // Parameters are the webform ids relating to the redirect.
-    $route_name = 'entity.webform.edit_form';
-    $parameters = ['webform' => $webform_id];
+      // Determine the redirection route along with the specified parameters
+      // based on whether we're importing webform config or webform_options.
+      if (config_type = 'webform') {
+        // Route name is the redirect to the import form builder page.
+        // Parameters are the webform ids relating to the redirect.
+        $route_name = 'entity.webform.edit_form';
+        $parameters = ['webform' => $webform_id];
+      }
+      else {
+        // Route name is the redirect to the options edit page.
+        // Parameters are the webform option id.
 
-    // Set a redirect response after the form has been submitted.
-    $form_state->setRedirect($route_name, $parameters);
+        $route_name = '';
+        $parameters = [];
+      }
+
+      // Set a redirect response after the form has been submitted.
+      $form_state->setRedirect($route_name, $parameters);
     }
   }
 }
