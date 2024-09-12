@@ -21,5 +21,6 @@ class RouteSubscriber extends RouteSubscriberBase {
       // Set a new permission for the form route.
       $route->setRequirement('_permission', 'access webform export form');
     }
-   }
+  }
+
 }
