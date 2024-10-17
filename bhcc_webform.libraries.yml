@@ -13,3 +13,13 @@ bhcc_webform.form_errors:
   dependencies:
     - core/drupal
     - core/jquery
+
+bhcc_webform.d10.2.states:
+  version: VERSION
+  js:
+    js/d10.2.states.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
