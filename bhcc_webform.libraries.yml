@@ -1,5 +1,4 @@
 bhcc_webform_uk_address:
-  version: VERSION
   css:
     theme:
       css/bhcc_webform_uk_address.css: {}
@@ -7,7 +6,6 @@ bhcc_webform_uk_address:
     - webform/webform.composite
 
 bhcc_webform.form_errors:
-  version: VERSION
   js:
     js/form_errors.js: {}
   dependencies:
