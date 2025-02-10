@@ -3,3 +3,7 @@ services:
     class: Drupal\bhcc_webform\EventSubscriber\WebformCacheHeaderKernelSubscriber
     tags:
       - { name: event_subscriber }
+  bhcc_webform_export_webform.route_subscriber:
+    class: Drupal\bhcc_webform\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

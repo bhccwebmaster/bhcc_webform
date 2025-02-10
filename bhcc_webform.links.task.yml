@@ -1,0 +1,7 @@
+bhcc_webform.bhcc_webform_webform_config_import:
+  title: 'Import webform config'
+  route_name: bhcc_webform.webform_config_import
+  parent_id: webform.config
+  weight: 0
+  requirements:
+    _permission: 'access webform config import form'
